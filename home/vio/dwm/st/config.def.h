@@ -5,12 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Liberation Mono:pixelsize=13:antialias=true:autohint=true";
-//static char font[] = "DejaVu Sans Mono:pixelsize=14:antialias=true:autohint=true  ";
-  //static char font[] = "terminus:pixelsize=15";
-  //static char font[] = "Bitstream Vera Sans Mono:pixelsize=14:antialias=true:hinti  ng=true";
-  //static char font[] = "monospace:size=10";
-
+static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 2;
 #define histsize 2000
 
@@ -89,9 +84,8 @@ static char termname[] = "st-256color";
 static unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-/*
 static const char *colorname[] = {
-	// 8 normal colors
+	/* 8 normal colors */
 	"black",
 	"red3",
 	"green3",
@@ -101,7 +95,7 @@ static const char *colorname[] = {
 	"cyan3",
 	"gray90",
 
-	// 8 bright colors
+	/* 8 bright colors */
 	"gray50",
 	"red",
 	"green",
@@ -113,39 +107,9 @@ static const char *colorname[] = {
 
 	[255] = 0,
 
-	// more colors can be added after 255 to use with DefaultXX
+	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-};
-*/
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray70",
-
-	/* 8 bright colors */
-	"gray50",
-	//"red",
-	"#ef2929",
-	//"green",
-	"#8ae234",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc", // 256
-	"#555555", // 257
 };
 
 
@@ -207,11 +171,6 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
-	//
-	{ ControlMask|ShiftMask, XK_C,			clipcopy,		{.i =  0} },
-	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
-	//
-	{ ControlMask|ShiftMask, XK_V,			clippaste,		{.i =  0} },
 	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
@@ -305,8 +264,7 @@ static Key key[] = {
 	{ XK_KP_Delete,     ShiftMask,      "\033[2K",      -1,    0,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[3;2~",    +1,    0,    0},
 	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[P",       -1,    0,    0},
-	//{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0,    0},
-	{ XK_KP_Delete,     XK_ANY_MOD,     "\177",      +1,    0,    0},
+	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0,    0},
 	{ XK_KP_Multiply,   XK_ANY_MOD,     "\033Oj",       +2,    0,    0},
 	{ XK_KP_Add,        XK_ANY_MOD,     "\033Ok",       +2,    0,    0},
 	{ XK_KP_Enter,      XK_ANY_MOD,     "\033OM",       +2,    0,    0},
@@ -361,9 +319,8 @@ static Key key[] = {
 	{ XK_Delete,        ShiftMask,      "\033[2K",      -1,    0,    0},
 	{ XK_Delete,        ShiftMask,      "\033[3;2~",    +1,    0,    0},
 	{ XK_Delete,        XK_ANY_MOD,     "\033[P",       -1,    0,    0},
-	//{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      +1,    0,    0},
-	{ XK_Delete,        XK_ANY_MOD,     "\177",      +1,    0,    0},
-	//{ XK_BackSpace,     XK_NO_MOD,      "\177",          0,    0,    0},
+	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      +1,    0,    0},
+	{ XK_BackSpace,     XK_NO_MOD,      "\177",          0,    0,    0},
 	{ XK_BackSpace,     Mod1Mask,       "\033\177",      0,    0,    0},
 	{ XK_Home,          ShiftMask,      "\033[2J",       0,   -1,    0},
 	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,   +1,    0},

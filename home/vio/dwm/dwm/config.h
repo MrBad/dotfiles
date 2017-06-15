@@ -68,11 +68,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  =	{ "st", NULL };
-static const char *chrmcmd[]  = { "/usr/bin/chromium", NULL };
+static const char *termcmd[]	=	{ "st", NULL };
+static const char *chrmcmd[]	=	{ "/usr/bin/chromium", NULL };
 static const char *lghtupcmd[]	=	{ "xbacklight", "-inc", "10", NULL };
-static const char *lghtdowncmd[] =  { "xbacklight", "-dec", "10", NULL };
-static const char *volupcmd[] =		{ "amixer", "set", "Master", "10%+", NULL };
+static const char *lghtdowncmd[]=	{ "xbacklight", "-dec", "10", NULL };
+static const char *volupcmd[]	=	{ "amixer", "set", "Master", "10%+", NULL };
 static const char *voldowncmd[] =	{ "amixer", "set", "Master", "10%-", NULL };
 static const char *volmutecmd[] =	{ "amixer", "set", "Master", "toggle", NULL };
 static const char *aplaycmd[]	=	{"rhythmbox-client", "--play-pause", NULL};
@@ -80,14 +80,16 @@ static const char *astopcmd[]	=	{"rhythmbox-client", "--stop", NULL};
 static const char *aprevcmd[]	=	{"rhythmbox-client", "--previous", NULL};
 static const char *anextcmd[]	=	{"rhythmbox-client", "--next", NULL};
 static const char *lockcmd[]	=	{"slock", NULL};
-static const char *printcmd[]	=	{"import", "-window", "root", "~/Pictures/snapshot.png", NULL};
-
+//static const char *printcmd[]	=	{"import", "-window", "root", "/home/vio/Pictures/snapshot.png", NULL};
+static const char *printcmd[]	=	{"/home/develop/snap/snap", NULL};
+static const char *atomcmd[]	=	{"atom", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,   XK_p,						spawn,          {.v = dmenucmd } },
 	{ MODKEY,	XK_Return,					spawn,          {.v = termcmd } },
 	{ MODKEY,	XK_c,						spawn,          {.v = chrmcmd } },
+	{ MODKEY,	XK_a,						spawn,          {.v = atomcmd } },
 	{ 0,		XF86MonBrightnessUp,		spawn,			{.v = lghtupcmd } },
 	{ 0,		XF86MonBrightnessDown,		spawn,			{.v = lghtdowncmd } },
 	{ 0,		XF86AudioLowerVolume,		spawn,			{.v = voldowncmd} },
