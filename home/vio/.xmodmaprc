@@ -1,0 +1,6 @@
+! XF86Back
+keycode 166 = NoSymbol
+
+! XF86Forward
+keycode 167 = NoSymbol
+
