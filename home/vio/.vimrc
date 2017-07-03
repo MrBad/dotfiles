@@ -24,7 +24,7 @@ set fileformat=unix
 set fileformats=unix,dos
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-u,ucs-bom,cp1250,iso-8859-1
+set fileencodings=utf-8,ucs-bom,cp1250,iso-8859-1
 
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
