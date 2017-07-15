@@ -83,13 +83,14 @@ static const char *lockcmd[]	=	{"slock", NULL};
 //static const char *printcmd[]	=	{"import", "-window", "root", "/home/vio/Pictures/snapshot.png", NULL};
 static const char *printcmd[]	=	{"/home/develop/snap/snap", NULL};
 static const char *atomcmd[]	=	{"atom", NULL};
-
+static const char *xfecmd[]		=	{"/usr/bin/xfe", NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,   XK_p,						spawn,          {.v = dmenucmd } },
 	{ MODKEY,	XK_Return,					spawn,          {.v = termcmd } },
 	{ MODKEY,	XK_c,						spawn,          {.v = chrmcmd } },
 	{ MODKEY,	XK_a,						spawn,          {.v = atomcmd } },
+	{ MODKEY,	XK_e,						spawn,          {.v = xfecmd } },
 	{ 0,		XF86MonBrightnessUp,		spawn,			{.v = lghtupcmd } },
 	{ 0,		XF86MonBrightnessDown,		spawn,			{.v = lghtdowncmd } },
 	{ 0,		XF86AudioLowerVolume,		spawn,			{.v = voldowncmd} },
