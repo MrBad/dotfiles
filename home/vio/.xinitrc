@@ -14,7 +14,7 @@ feh --bg-scale /home/develop/dwm/dwm-bg02.png
 #done &
 
 #~/dwm/stat &
-/home/develop/thinkpad_dwm_stat/stat &
+/usr/local/bin/tkstat &
 xmodmap ~/.xmodmaprc
 
 exec dwm

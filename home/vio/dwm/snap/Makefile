@@ -13,6 +13,9 @@ all: $(OBJECTS) Makefile
 %o: %.c Makefile *.h
 	$(CC) $(CFLAGS) $(OFLAGS) -o $@ $<
 
+install:
+	cp $(TARGET) /usr/local/bin
+
 clean:
 	rm $(OBJECTS) $(TARGET)
 
