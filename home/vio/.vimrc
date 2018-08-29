@@ -3,12 +3,30 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-set tabstop=4   " a tab will be represented with 4 columns
-set softtabstop=4 " <tab> is pressed in insert mode 4 columns
-set shiftwidth=4 " indentation is 4 columns
+set tabstop=4       " a tab will be represented with 4 columns
+set softtabstop=4   " <tab> is pressed in insert mode 4 columns
+set shiftwidth=4    " indentation is 4 columns
 " set noexpandtab " tabs are tabs, do not replace with spaces
 set expandtab       " Expand TABs to spaces
+set softtabstop=4   " when hitting <BS>, pretend like a tab is removed, even if spaces
+set autoindent      " always set autoindenting on
+set copyindent      " copy the previous indentation on autoindenting
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case if search pattern is all lowercase,
+set cc=80
 
+highlight Search cterm=underline
+
+map <Leader>t :!phpunit %<cr>       
+
+" Open splits
+nmap vs :vsplit<cr>
+nmap sp :split<cr>
+" easier window navigation
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " show linenumbers
 " set number
@@ -36,12 +54,14 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"set number relativenumber
-"augroup numbertoggle
-"    autocmd!
-"    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-"augroup END
+set number relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+set cursorline
 
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
@@ -73,13 +93,14 @@ Plugin 'kristijanhusak/vim-hybrid-material'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " clock
-function! AirlineInit()
-        let g:airline_section_y = airline#section#create(['ffenc', '%{strftime("%H:%M")}'])
-endfunction
-autocmd VimEnter * call AirlineInit()
+" function! AirlineInit()
+"    let g:airline_section_y = airline#section#create(['ffenc', '%{strftime("%H:%M")}'])
+" endfunction
+" autocmd VimEnter * call AirlineInit()
 
 
 silent execute '!mkdir -p $HOME/.vim/tmp/backup'
@@ -131,6 +152,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
+let g:syntastic_cpp_compiler='g++'
+let g:syntastic_cpp_compiler_options='-std=c++11 -Wall -Wextra -Wpedantic'
+
+" let g:syntastic_c_compiler_options='-Wall -Wextra -std=gnu90 -nostdlib -fno-builtin -ffreestandingi -Wno-int-to-pointer-cast'
+let g:syntastic_c_compiler_options='-Wall -Wextra -std=c++11'
 let g:phpcomplete_parse_docblock_comments = 1
 let g:phpcomplete_mappings = {
    \ 'jump_to_def': '<C-]>',
@@ -143,3 +169,30 @@ let g:phpcomplete_mappings = {
 " command W w !sudo tee % > /dev/null
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command R :execute ':SyntasticReset'
+
+" I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/vendor/**
+
+" Laravel "
+
+" Abbreviations
+" abbrev pft PHPUnit_Framework_TestCase
+" abbrev mm !php artisan make:model
+" abbrev mc !php artisan make:controller
+" abbrev mmig !php artisan mkae:migration
+
+" Concept - load underlying class for Laravel
+function! FacadeLookup()
+    let facade = input('Facade Name: ')
+    let classes = {
+\       'Form': 'Html/FormBuilder.php',
+\       'Html': 'Html/HtmlBuilder.php',
+\       'File': 'Filesystem/Filesystem.php',
+\       'Eloquent': 'Database/Eloquent/Model.php'
+\   }
+
+    execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
+endfunction
+nmap ,lf :call FacadeLookup()<cr>
+
+au BufRead,BufNewFile *.asm set filetype=nasm
